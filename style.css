@@ -1,0 +1,104 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #050c23;
+  color: #cfd8dc;
+  font-size: 18px;
+  font-family: "Courier New", monospace;
+  line-height: 1.6;
+}
+
+/* Header */
+header {
+  padding: 2rem;
+  text-align: center;
+  background: #0a122f;
+  border-bottom: 2px solid cyan;
+}
+
+header h1 {
+  font-size: 3rem;
+  color: cyan;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 10px cyan, 0 0 20px #00e5ff;
+}
+
+header p {
+  max-width: 800px;
+  margin: 0.5rem auto;
+  text-indent: 1em;
+  color: #b0bec5;
+}
+
+/* Headings */
+h2 {
+  color: cyan;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid cyan;
+  padding-bottom: 0.5rem;
+}
+
+h3 {
+  color: #00e5ff;
+  margin-bottom: 0.5rem;
+}
+
+/* Main Layout */
+main {
+  max-width: 1100px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+/* Card Layout */
+.card-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.card {
+  background: #0d183a;
+  border: 1px solid #00bcd4;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 0 10px rgba(0, 191, 255, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px rgba(0, 191, 255, 0.4);
+}
+
+/* Links */
+a {
+  color: cyan;
+  text-decoration: none;
+  font-style: italic;
+  transition: 0.3s;
+}
+
+a:hover {
+  color: #d3d7cf;
+  text-decoration: underline;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: #0a122f;
+  border-top: 2px solid cyan;
+  color: #90a4ae;
+  font-size: 0.9rem;
+}
+p {
+  text-indent: 1em;
+}
