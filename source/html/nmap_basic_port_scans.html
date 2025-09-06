@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>nmap basic port scans</title>
+    <link rel="stylesheet" href="../css/style.css">
+  </head>
+  <body>
+    <h1>nmap basic port scans</h1>
+    <section>
+      <p>like an IP address identifies a host on a network, a TCP or UDP port identifies a networking service on a host. ports are usually linked to specific services, for example 
+        22/tcp to SSH, 80/tcp to HTTP.</p>
+      <p>a port can be open, which means a service is listening on it, or closed, which means no service is listening on it. in practice, a firewall or other security measure might
+        block packets to a port, so nmap recognizes 6 possible port states: </p>
+      <ul>
+        <li><b>open</b>: a service is listening on the port</li>
+        <li><b>closed</b>: no service is listening on the port, but it is accessible(it is reachable and not blocked by firewall or other security measure)</li>
+        <li><b>filtered</b>: nmap cannot determine if the port is open or closed, because it is inaccessible, usually due to a firewall preventing nmap from reaching the target or the
+          target from reaching nmap </li>
+        <li><b>unfiltered</b>: nmap cannot determine if the port is open or closed, but is accesible</li>
+        <li><b>open|filtered</b>: nmap cannot determine if the port is open or filtered</li>
+        <li><b>closed|filtered</b>: nmap cannot determine if the port is closed or filtered</li>
+      </ul>
+    </section>
+    <section>
+      <h3>TCP flags</h3>
+      <p>a TCP segment can have one or many TCP flags, located in its header. they can either be set or unset:</p>
+      <ul>
+        <li><b>URG</b> - the incoming data is urgent, the segment will be processed immediately, without waiting for others</li>
+        <li><b>ACK</b> - used to acknowledge the receipt of a TCP segment</li>
+        <li><b>PSH</b> - push flag asking TCP to pass the data to the application promptly</li>
+        <li><b>RST</b> - reset flag used to reset the connection</li>
+        <li><b>SYN</b> - synchronise flag used to initiate 3-way handshake and synchronise sequence numbers with host</li>
+        <li><b>FIN</b> - the sender has no more data to send</li>
+      </ul>
+    </section>
+    <section>
+      <h3>TCP connect, TCP SYN and UDP scan</h3>
+      <p>the TCP connect scan works by completing the 3-way handshake. after, it sends a RST/ACK flag to tear it. for unprivileged users, this is the only way to discover open TCP ports.
+        it is more precise, but also it is easily detected by firewalls and such, because it completes the connection. <b>the TCP connect scan can be used with <code>-sT</code></b>.</p>
+      <img src="../../media/nmap/nmap_3wh.png" alt="3-way handshake illustration" height="200">     <br>
+      <img src="../../media/nmap/nmap_sT.png" alt="-sT handshake illustration" height="200">      <br>      <br>
+      <code><pre>[tufescu@laptopdragos ~]$ nmap -p- -sT 192.168.1.4
+Starting Nmap 7.97 ( https://nmap.org ) at 2025-09-01 19:02 +0300
+Nmap scan report for 192.168.1.4
+Host is up (0.017s latency).
+Not shown: 65514 closed tcp ports (conn-refused)
+PORT      STATE    SERVICE
+21/tcp    filtered ftp
+22/tcp    filtered ssh
+23/tcp    filtered telnet
+25/tcp    filtered smtp
+111/tcp   filtered rpcbind
+113/tcp   filtered ident
+137/tcp   filtered netbios-ns
+138/tcp   filtered netbios-dgm
+139/tcp   filtered netbios-ssn
+143/tcp   filtered imap
+445/tcp   filtered microsoft-ds
+512/tcp   filtered exec
+513/tcp   filtered login
+514/tcp   filtered shell
+993/tcp   filtered imaps
+3306/tcp  filtered mysql
+3697/tcp  open     nw-license
+7681/tcp  open     unknown
+9080/tcp  open     glrpc
+56789/tcp open     unknown
+56790/tcp open     unknown
+
+Nmap done: 1 IP address (1 host up) scanned in 40.00 seconds</pre></code>
+      <p>the TCP SYN scan does not complete the 3-way handshake. it tears the connection after it receives a response from the target. it is stealthier, because it does not establish
+        a connection. it has less chances to be logged. <b>the TCP SYN (stealth) scan can be used with <code>-sS</code></b>.</p>
+      <img src="../../media/nmap/nmap_sS.png" alt="-sS illustration" height="200">
+      <p>UDP is a connectionless protocol, so it does not require any handshake. we cannot guarantee that a service listening on a UDP port will reply, but if a UDP datagram will be
+        sent to a closed port, an ICMP port unreachable error will be returned. <b>UDP scan can be used with <code>-sU</code></b>.</p>
+        <img src="../../media/nmap/nmap_sU1.png" alt="-sU illustration" height="200">     <br>
+        <img src="../../media/nmap/nmap_sU2.png" alt="-sU illustration" height="200">
+      <p>there are a few options for selecting which ports to scan:</p>
+      <ul>
+        <li>by default, nmap scans the most common(top) 1000 ports</li>
+        <li><code>-p1-10</code> scans ports 1 - 10</li>
+        <li><code>-p-</code> scans all 65k ports</li>
+        <li><code>-F</code> scans top 100 ports</li>
+        <li><code>--top-ports 200</code> scans top 200 ports</li>
+      </ul>
+    </section>
+    <section>
+      <h3>summary</h3>
+      <ul>
+				<li><code>-sT</code> - TCP connect scan</li>
+				<li><code>-sS</code> - TCP SYN scan</li>
+				<li><code>-sU</code> - UDP scan</li>
+				<li><code>-p-</code> - scan all ports</li>
+				<li><code>-F</code> - scan most common 100 ports</li>
+				<li><code>-p1-10</code> - scan all ports from 1 to 10</li>
+			</ul>
+    </section>
+    
+    <br>
+    <a href="../../index.html">go home</a>
+  </body>
+</html>

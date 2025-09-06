@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>nmap advanced port scans</title>
+    <link rel="stylesheet" href="../css/style.css">
+  </head>
+  <body>
+    <h1>nmap advanced port scans</h1>
+    <p>security researchers combined different TCP flags in packets and sent them to open/closed ports to determine the responses. they wanted to find out what 
+      happens when we send a packet with some TCP flags set, when there isn't any connection established. they concluded and created new scan types </p>
+    <dl>
+      <dt>null scan</dt>
+      <dd><b>null scan can be triggered with <code>-sN</code></b></dd>
+      <dd>it has no TCP flags set. sent to an open port, it does not generate response. sent to a closed one, returns RST/ACK packet</dd>
+      <dd>can't decide whether the port is open or filtered</dd>      <br>
+      <img src="../../media/nmap/nmap_sN1.png" alt="-sN illustration" height="150">     <br>
+      <img src="../../media/nmap/nmap_sN2.png" alt="-sN illustration" height="150">     <br>      <br>
+      <dt>FIN scan</dt>
+      <dd><b>FIN scan can be triggered with <code>-sF</code></b></dd>
+      <dd>it has only FIN flag set. sent to an open port, it does not generate response. sent to a closed one, returns RST/ACK packet</dd>
+      <dd>can't decide whether the port is open or filtered</dd>      <br>
+      <img src="../../media/nmap/nmap_sF1.png" alt="-sF illustration" height="150">     <br>
+      <img src="../../media/nmap/nmap_sF2.png" alt="-sF illustration" height="150">     <br>      <br>
+      <dt>Xmas scan</dt>
+      <dd><b>Xmas scan can be triggered with <code>-sX</code></b></dd>
+      <dd>it FIN, PSH, URG flags set. sent to an open port, it does not generate response. sent to a closed one, returns RST/ACK packet</dd>
+      <dd>can't decide whether the port is open or filtered</dd>      <br>
+      <img src="../../media/nmap/nmap_sX1.png" alt="-sX illustration" height="150">     <br>
+      <img src="../../media/nmap/nmap_sX2.png" alt="-sX illustration" height="150">     <br>      <br>
+      <dt>maimon scan</dt>
+      <dd><b>with <code>-sM</code></b>. it is mostly useless. has FIN and ACK set</dd>
+      <dt>custom scan</dt>
+      <dd><b>with <code>--scanflags URGACKPSHRSTSYNFIN</code></b>. you can select the flags you want to set</dd>
+    </dl>
+    <h3>verbosity</h3>
+    <p><b>for a more detailed output, the flags <code>-v</code> and even <code>-vv</code></b> can be used. v stands for verbosity. </p>
+    <p><b>providing the <code>--reason</code> option provides the reason why nmap concluded that a system is up or a particular port open.</b> </p>
+    <p><b><code>-d</code> and <code>-dd</code> provide debugging details.</b> they are very large in size.</p>
+    <h3>summary</h3>
+    <ul>
+      <li><code>-sN</code> - TCP null scan</li>
+      <li><code>-sF</code> - TCP FIN scan</li>
+      <li><code>-sX</code> - TCP Xmas scan</li>
+      <li><code>-sM</code> - TCP Maimon scan</li>
+      <li><code>--scanflags URGACKPSHRSTSYNFIN</code> - custom scan</li>
+      <li><code>-v</code> - verbose</li>
+      <li><code>--reason</code> - show reason</li>
+      <li><code>-d</code> - debugging</li>
+    </ul>
+    <br>
+    <a href="../../index.html">go home</a>
+  </body>
+</html>

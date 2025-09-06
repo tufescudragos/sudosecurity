@@ -1,0 +1,120 @@
+<!--
+<p>&ensp;You can control the speed using <code>-T0-5</code>. Different speeds:</p>
+<ul>
+	<li>0-paranoid</li>
+	<li>1-sneaky(used in real world scenarious)</li>
+	<li>2-polite</li>
+	<li>3-normal</li>
+	<li>4-aggresive(used in CTFs)</li>
+	<li>5-insane</li>
+</ul>
+<p>&ensp;You can control packet rate with <code>--min-rate [number]</code> and <code>--max-rate [number]</code>.
+	You can control probing parallelization with <code>--min-parallelism [numprobes]</code>
+	and <code>--max-probes [numprobes]</code>.</p>
+
+                <li>TCP ACK scan: with <code>-sA</code> flag, has ACK flag set. A port replies with RST regardless 
+                    of its state. It is only usefull to detect firewall rules, which ports are blocked and which ports
+                    are not. It is ineffective against targets without firewalls.</li>
+                    <img src="nmap_media/nmap_sA.png" alt="-sA illustration" height="200">
+                <li>Window scan: with <code>-sW</code> flag, has ACK flag set. Similar to TCP ACK scan, but it examines
+                    the window field of the RST packets returned. 
+                    It is only usefull to detect firewall rules, which ports are blocked and which ports
+                    are not. It is ineffective against targets without firewalls.</li>
+                    <img src="nmap_media/nmap_sW.png" alt="-sW illustration" height="200">
+            </ol>
+        </section>
+        <section>
+            <h3>Spoofing and decoys</h3>
+            <p>&ensp;In some network setups, you will be able to scan a target system with a spoofed IP address and
+                even MAC address. You can use this only when you can guarantee to capture the response. Scanning on random 
+                networks using a spoofed IP address would return unreliable results, unless you have the response routed to 
+                you.</p>
+            <p>&ensp;The attacker needs to monitor the network traffic to analyse replies. Steps for scanning with 
+                spoofed IPs:
+            </p>
+            <ol>
+                <li>Attacker sends a packet with a spoofed source IP address to the target machine.</li>
+                <li>The target machine replies to the spoofed IP address as the destination.</li>
+                <li>Attacker captures the replies to figure out open ports.</li>
+            </ol>
+            <p>&ensp;In general, it is expected to specify the network interface with <code>-e NET-INTERFACE</code> 
+                and explicitly disable ping scan with <code>-Pn</code> flag. The attack is useless if the attacker 
+                doesn't monitor the network for responses.</p>
+            <p>&ensp;You can also spoof MAC addresses with <code>--spoof-mac SPOOFED_MAC</code>, but only if you are on the 
+                same subnet.</p>
+            <p>&ensp;Spoofing only works in minimal number of cases, where certain conditions are met. The attacker 
+                might also use decoys to make it harder to be pinpointed. The concept is to make the scan appear to 
+                be coming from many IP addresses, so the attacker's IP is lost among them. You can do this with :</p>
+            <p><code>-D IPs</code>. You can use <code>ME</code> to indicate your IP address or <code>RND</code> for 
+                random IP addresses.</p>
+            <p>Example: <code>nmap -D 192.168.1.12,192.168.1.67,ME,RND</code></p>
+            <img src="nmap_media/nmap_S.png" alt="-S illustration" height="400"><br>
+            <img src="nmap_media/nmap_D.png" alt="-D illustration" height="400">
+        </section>
+        <section>
+            <h3>Fragmented packets</h3>
+            <p>&ensp;You can fragment packets to make it harder for IDS or Firewall to detect them. You can use 
+                <code>-f</code> to divide the IP data into 8 bytes or less. It is stackable, so <code>-ff</code> divides
+                it into 16. You can increase the size of the packets with <code>--data-length NUM</code>.
+            </p>
+            <p>&ensp;You can use <code>--source-port PORT</code> flag to specify the source port.</p>
+        </section>
+        <section> 
+                <li><code>-S SPOOFED_IP</code> - spoof IP</li>
+                <li><code>--spoof-mac SPOOFED_MAC</code> - spoof MAC</li>
+                <li><code>-D DECOY_IP</code> - decoy IPs</li>
+                <li><code>--source-port PORT</code> - set source port</li>
+                <li><code>-f</code> - fragment IP data in 8 bytes</li>
+                <li><code>-ff</code> - fragment IP data in 16 bytes</li>
+                <li><code>--source-port PORT</code> - specify source port number</li>
+                <li><code>--data-length NUM</code> - set data length</li> -->
+        <h2>Post port scans</h2>
+        <p>&ensp;In this article, we will be focusing on how Nmap can be used to:</p>
+        <ul>
+            <li>Detect versions of running services</li>
+            <li>Detect the OS based on any signs </li>
+            <li>Run Nmap's traceroute</li>
+            <li>Run Nmap scripts</li>
+            <li>Save results in various formats</li>
+        </ul>
+        <section>
+            <h3>Service detection, OS detection and traceroute. Saving the results.</h3>
+            <p>&ensp;Including <code>-sV</code> flag will collect and determine services and 
+                version information for the open ports. The level of information can 
+                be specified with <code>--version-intensity LEVEL</code> where LEVEL
+                can take a value between 0 and 9. 0 is least amount of details, 
+                9 the most. Also, using <code>-sV</code> forces Nmap to complete the 3-way handshake</p>
+            <p>&ensp;Nmap can attempt to determine the host OS, when given the <code>-O</code> flag.
+                It can also attempt to find routes between you and the target, using <code>--traceroute</code>.</p>
+            <p>&ensp;Nmap can save the output in 3 different formats: normal format(using <code>-oA</code> flag),
+            <code>grep</code>able format(using <code>-oG</code> flag) or XML format(using <code>-oX</code> flag).</p>
+            <p>&ensp;<code>-oA</code> flag can be used to save in all formats. Also, you have to specify the filename, along with these flags. For example, adding -oN output to the command will save it as a file named output.</p>
+        </section>
+        <section>
+            <h3>Nmap scripting engine</h3>
+            <p>&ensp;A script is a sequence of instructions that can be executed by a 
+                computer or programming language, typically used to automate tasks that
+                would otherwise be performed manually. In Nmap, a script can reveal 
+                additional information about the host or ports and services running on it.
+                These can be used to exploit vulnerabilities or help compromise the system.
+            </p>
+            <p>&ensp;The default Nmap installation contains about 600 scripts, located 
+                in the <code>/usr/share/nmap/scripts</code>. Script categories:</p>
+            <ul>
+                <li>auth: authentication related scripts</li>
+                <li>broadcast: discover hosts by sending broadcast messages</li>
+                <li>brute: performs brute-force passwords auditing against logins</li>
+                <li>default: default scripts, same as <code>--script=default</code></li>
+                <li>discovery: retrieve accesible information, such as database tables and DNS names</li>
+                <li>dos: detects servers vulnerable to Denial of Service(DoS)</li>
+                <li>exploit: attempt to exploit various vulnerable services</li>
+                <li>external: checks using a third-party service, such as Geoplugin and Virustotal</li>
+                <li>fuzzer: launch fuzzing attacks</li>
+                <li>intrusive: intrusive scripts such as brute-force attacks and exploitation</li>
+                <li>malware: scans for backdoors</li>
+                <li>safe: safe scripts that won't crash the target</li>
+                <li>version: retrieve service versions</li>
+                <li>vuln: check for vulnerabilities or exploit vulnerable services</li>
+            </ul>
+            <p>&ensp;You can choose a script using <code>--script SCRIPT-NAME</code>. You can use more scripts with wildcards.</p>
+</html>

@@ -1,0 +1,65 @@
+@font-face {
+  font-family: 'Ubuntu Mono';
+  src: url("../../media/fonts/UbuntuMono-Regular.ttf") format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Ubuntu Mono';
+  src: url("../../media/fonts/UbuntuMono-Bold.ttf") format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Ubuntu Mono';
+  src: url("../../media/fonts/UbuntuMono-Italic.ttf") format('truetype');
+  font-weight: 400;
+  font-style: italic;
+}
+body{
+  background-color: rgb(48, 10, 36);
+  color:rgb(211, 215, 207);
+  font-size: 20px;
+  font-family:'Ubuntu Mono';
+  font-weight: 400;
+}
+h1,h2,h3{
+  color: rgb(221, 72, 20);
+  /*margin-top: 20px;
+  margin-bottom: 5px;*/
+}
+b{
+  font-weight: 700;
+}
+
+em{
+  font-style: italic;
+}
+a:link{
+  color:rgb(221, 72, 20);
+  text-decoration: none;
+  font-style: italic;
+}
+a:visited{
+  color:rgb(221, 72, 20);
+  text-decoration: none;
+}
+a:hover{
+  color:rgb(211, 215, 207);
+  text-decoration: underline;
+}
+pre, code {
+  display: inline-block;
+  border: 1px solid black;
+  padding: 4px 6px;
+  border-radius: 4px;
+  background-color: #000000; 
+  font-size: 18px;
+} 
+/*p {
+  margin-top: 0;
+  margin-bottom: 0;
+} */
+p{
+  text-indent: 1em;
+}
