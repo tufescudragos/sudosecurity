@@ -43,6 +43,56 @@
     </section>
     <section>
       <h2>Active Directory</h2>
+      <p>
+        The core of ant <b>Windows Domain</b> is the <b>Active Directory Domain Service(AD DS)</b>. This is like a catalogue that holds the information of all the "objects" on the network.
+        Amongst the objects supported by <b>AD</b>, there are users, groups, machines, printers, shares and many other. Objects in <b>AD</b>:
+      </p>
+      <ul>
+        <li>
+          <p>
+            <b>Users</b> are one of the most common onject types in <b>AD</b>. Users are objects known as <b>security principals</b>, which means that they can be authenticated by the domain 
+            and be assigned control over resources like files or printers. <b>Security principal</b> = object that can act upon resources on the network. Users can be:
+            <ul>
+              <li><b>People</b>: real people that need to access the network, like employees.</li>
+              <li><b>Services</b>: services like <b>Kerberos</b> or MSSQL. Every service needs a user to run, but service users only have privileges to run their specific services.</li>
+            </ul>
+          </p>
+        </li>
+        <li>
+          <p><b>Machines</b>: for every computer that joins the <b>AD</b>, a machine object is created. They are also <b>security principals</b> and are assigned accounts, which are 
+            local administrators on the assigned computer and are not supposed to be used on any other computer. Machine account 
+            passwords are randomly rotated and are generally comprised of 120 random characters. The machine account name is the 
+            computer's name followed by a $.
+          </p>
+        </li>
+        <li>
+          <p>
+            <b>Security groups</b>: used to assign acces rights to files or other resources to entire 
+            groups instead of individual users. <b>security groups</b> are also considered <b>security 
+            principals</b>. Groups can have both users and machines as members and can also include 
+            other groups.
+          </p>
+          <p>Several groups are created by default in a domain:
+            <dl>
+              <dt><b>Domain Admins</b></dt>
+              <dd>Administrative privileges over the entire domain, including <b>DCs</b>.</dd>
+              <dt><b>Server Operators</b></dt>
+              <dd>Can administer <b>Domain Controllers</b>. Cannot change any administrative group memberships.</dd>
+              <dt><b>Backup Operators</b></dt>
+              <dd>Can access any file. Used to perform backups of data on computers.</dd>
+              <dt><b>Account Operators</b></dt>
+              <dd>Can create or modify other accounts in domain.</dd>
+              <dt><b>Domain Computers</b></dt>
+              <dd>All existing computers in the domain.</dd>
+              <dt><b>Domain Controllers</b></dt>
+              <dd>All existing <b>DCs</b> on the domain.</dd>
+            </dl>
+          </p>
+        </li>
+      </ul>
+      <p>
+        
+      </p>
     </section>
     <footer>
       <p> 2025 sudosecurity | Tufescu Dragos</p>
