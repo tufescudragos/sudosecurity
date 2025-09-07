@@ -19,80 +19,227 @@
   <main>
     <section>
       <h2>Windows Domains</h2>
-      <p>
-        In a small network, with a few computers and users, configuring and troubleshooting each machine isn't a problem. However, in most cases,
-        typical networks contain a large number of computers, servers, printers, users etc. Managing each as a separate entity can become very confusing and repetitive.
-        To overcome these challanges, <b>Windows Domains</b> can be used.
-      </p>
-      <p>
-        Simply, a <b>Windows Domain</b> is a group of users and computers under the administration of a given entity. Its main idea is to centralise the administration of 
-        common components of a Windows computer network in a single repository called <b>Active Directory(AD)</b>. The server that runs the <b>Active Directory</b> is 
-        called <b>Domain Controller(DC)</b>.
-      </p>
-      <p>
-        Advantages of having a configured <b>Windows Domain</b>:
-      </p>
-      <ul>
-        <li><b>Centralised identity management</b>: all users across the network are set up with minimum effort.</li>
-        <li><b>Managing security policies</b>: security policies are configured from the <b>Active Directory</b> and applied to users and computers across the network.</li>
-      </ul>
-      <p>
-        <b>Active Directories</b> are very common. For example, at the local library, you most likely cannot access the <b>Control Panel</b> on the computers. 
-        This is because a security policy prevents you from doing that. Also, it stores credidentials, so you can use them on any machine.
-      </p>
+      <section class="content-block">
+        <p>
+          In a small network, with a few computers and users, configuring and troubleshooting each machine isn't a problem. However, in most cases,
+          typical networks contain a large number of computers, servers, printers, users etc. Managing each as a separate entity can become very confusing and repetitive.
+          To overcome these challanges, <b>Windows Domains</b> can be used.
+        </p>
+        <p>
+          Simply, a <b>Windows Domain</b> is a group of users and computers under the administration of a given entity. Its main idea is to centralise the administration of 
+          common components of a Windows computer network in a single repository called <b>Active Directory(AD)</b>. The server that runs the <b>Active Directory</b> is 
+          called <b>Domain Controller(DC)</b>.
+        </p>
+      </section>
+      <section class="content-block">
+        <p>
+          Advantages of having a configured <b>Windows Domain</b>:
+        </p>
+        <ul>
+          <li><b>Centralised identity management</b>: all users across the network are set up with minimum effort.</li>
+          <li><b>Managing security policies</b>: security policies are configured from the <b>Active Directory</b> and applied to users and computers across the network.</li>
+        </ul>
+        <p>
+          <b>Active Directories</b> are very common. For example, at the local library, you most likely cannot access the <b>Control Panel</b> on the computers. 
+          This is because a security policy prevents you from doing that. Also, it stores credidentials, so you can use them on any machine.
+        </p>
+      </section>
     </section>
     <section>
       <h2>Active Directory</h2>
-      <p>
-        The core of ant <b>Windows Domain</b> is the <b>Active Directory Domain Service(AD DS)</b>. This is like a catalogue that holds the information of all the "objects" on the network.
-        Amongst the objects supported by <b>AD</b>, there are users, groups, machines, printers, shares and many other. Objects in <b>AD</b>:
-      </p>
+      <section class="content-block">
+        <p>
+          The core of any <b>Windows Domain</b> is the <b>Active Directory Domain Service(AD DS)</b>. This is like a catalogue that holds the information of all the "objects" on the network.
+          Amongst the objects supported by <b>AD</b>, there are users, groups, machines, printers, shares and many other. Objects in <b>AD</b>:
+        </p>
+      </section>
       <ul>
         <li>
-          <p>
-            <b>Users</b> are one of the most common onject types in <b>AD</b>. Users are objects known as <b>security principals</b>, which means that they can be authenticated by the domain 
-            and be assigned control over resources like files or printers. <b>Security principal</b> = object that can act upon resources on the network. Users can be:
-            <ul>
-              <li><b>People</b>: real people that need to access the network, like employees.</li>
-              <li><b>Services</b>: services like <b>Kerberos</b> or MSSQL. Every service needs a user to run, but service users only have privileges to run their specific services.</li>
-            </ul>
-          </p>
+          <section class="content-block">
+            <p>
+              <b>Users</b> are one of the most common onject types in <b>AD</b>. Users are objects known as <b>security principals</b>, which means that they can be authenticated by the domain 
+              and be assigned control over resources like files or printers. <b>Security principal</b> = object that can act upon resources on the network. Users can be:
+              <ul>
+                <li><b>People</b>: real people that need to access the network, like employees.</li>
+                <li><b>Services</b>: services like <b>Kerberos</b> or MSSQL. Every service needs a user to run, but service users only have privileges to run their specific services.</li>
+              </ul>
+            </p>
+          </section>
         </li>
         <li>
-          <p><b>Machines</b>: for every computer that joins the <b>AD</b>, a machine object is created. They are also <b>security principals</b> and are assigned accounts, which are 
-            local administrators on the assigned computer and are not supposed to be used on any other computer. Machine account 
-            passwords are randomly rotated and are generally comprised of 120 random characters. The machine account name is the 
-            computer's name followed by a $.
-          </p>
+          <section class="content-block">
+            <p>
+              <b>Machines</b>: for every computer that joins the <b>AD</b>, a machine object is created. They are also <b>security principals</b> and are assigned accounts, which are 
+              local administrators on the assigned computer and are not supposed to be used on any other computer. Machine account 
+              passwords are randomly rotated and are generally comprised of 120 random characters. The machine account name is the 
+              computer's name followed by a $.
+            </p>
+          </section>
         </li>
         <li>
-          <p>
-            <b>Security groups</b>: used to assign acces rights to files or other resources to entire 
-            groups instead of individual users. <b>security groups</b> are also considered <b>security 
-            principals</b>. Groups can have both users and machines as members and can also include 
-            other groups.
-          </p>
-          <p>Several groups are created by default in a domain:
-            <dl>
-              <dt><b>Domain Admins</b></dt>
-              <dd>Administrative privileges over the entire domain, including <b>DCs</b>.</dd>
-              <dt><b>Server Operators</b></dt>
-              <dd>Can administer <b>Domain Controllers</b>. Cannot change any administrative group memberships.</dd>
-              <dt><b>Backup Operators</b></dt>
-              <dd>Can access any file. Used to perform backups of data on computers.</dd>
-              <dt><b>Account Operators</b></dt>
-              <dd>Can create or modify other accounts in domain.</dd>
-              <dt><b>Domain Computers</b></dt>
-              <dd>All existing computers in the domain.</dd>
-              <dt><b>Domain Controllers</b></dt>
-              <dd>All existing <b>DCs</b> on the domain.</dd>
-            </dl>
-          </p>
+          <section class="content-block">
+            <p>
+              <b>Security groups</b>: used to assign acces rights to files or other resources to entire 
+              groups instead of individual users. <b>security groups</b> are also considered <b>security 
+              principals</b>. Groups can have both users and machines as members and can also include 
+              other groups.
+            </p>
+            <p>Several groups are created by default in a domain:
+              <dl>
+                <dt><b>Domain Admins</b></dt>
+                <dd>Administrative privileges over the entire domain, including <b>DCs</b>.</dd>
+                <dt><b>Server Operators</b></dt>
+                <dd>Can administer <b>Domain Controllers</b>. Cannot change any administrative group memberships.</dd>
+                <dt><b>Backup Operators</b></dt>
+                <dd>Can access any file. Used to perform backups of data on computers.</dd>
+                <dt><b>Account Operators</b></dt>
+                <dd>Can create or modify other accounts in domain.</dd>
+                <dt><b>Domain Computers</b></dt>
+                <dd>All existing computers in the domain.</dd>
+                <dt><b>Domain Controllers</b></dt>
+                <dd>All existing <b>DCs</b> on the domain.</dd>
+              </dl>
+            </p>
+          </section>
         </li>
       </ul>
-      <p>
-        
-      </p>
+      <section class="content-block">
+        <a href="media/images/active_directory/active_directory_basics/active_directory_basics_1.png" target="_self">
+          <img src="media/images/active_directory/active_directory_basics/active_directory_basics_1.png" class="img-right">
+        </a>
+        <p>
+          Running <b>"Active Directory Users and Computers"</b> on the <b>Domain Controller</b> allows for the configuration of users, groups and machines:
+        </p>
+        <p>This will open a hirearchy of users, computers and groups that exist on the domain. They are organised in <b>Organisation Units(OUs)</b>. These are container
+          objects with the purpose of classifying users and machines. They are mainly used to group users/computers with similar policies. A user can be part of a 
+          single <b>OU</b> at a time. 
+        </p>
+        <p>
+          Here, you can add <b>OUs</b>, organise them, add users, set them up, move them around. You can also access individual user 
+          properties, where you can edit names, change passwords, set remote control up etc. Delegations can be set up here to.
+        </p>
+      </section>
+      <section class="content-block">
+        <a href="media/images/active_directory/active_directory_basics/active_directory_basics_2.png">
+          <img src="media/images/active_directory/active_directory_basics/active_directory_basics_2.png" class="img-center">
+        </a>
+        <p>
+          In the photo, we can see that there is an <b>OU</b> called OFFICE with some child <b>OUs</b> for Administrators, IT Department, Personnel, Teachers
+           and Workstations. A layout like this is expected, but it is not always used. 
+        </p>
+        <p>
+          Typically, this structure mimmics the actual business' structure, because it allows for easier policy deployment.
+        </p>
+      </section>
+      <section class="content-block">
+        <p>
+          Upon opening any <b>OU</b>, you can see its contents and perform tasks like creating, modifying and deleting users. You can also reset passwords, 
+          force password reset at logon, send mail, disable accounts and more.
+        </p>
+        <a href="media/images/active_directory/active_directory_basics/active_directory_basics_3.png" target="_self">
+          <img src="media/images/active_directory/active_directory_basics/active_directory_basics_3.png" class="img-center">
+        </a>
+        <p>
+          There are some default containers apart from the OFFICE. They are automatically configured by Windows.
+          <ul>
+            <li><b>Builtin</b>: Contains default groups available to any Windows host.</li>
+            <li><b>Computers</b>: Any machine that joins the domain gets put here by defaut and can be moved as needed.</li>
+            <li><b>Domain Controllers</b>: Contains the <b>DCs</b> by default.</li>
+            <li><b>Users</b>: Default users and groups.</li>
+            <li><b>Managed Service Accounts</b>: Accounts used by services in the domain.</li>
+          </ul>
+        </p>
+      </section>
+    </section>
+    <section>
+      <h2>Managing users and computers</h2>
+      <dl>
+        <section class="content-block">
+          <dt><li><b>Deleting extra OUs and users</b></li></dt>
+          <dd>
+              <p>
+                By default, <b>OUs</b> are protected against accidental deletion. To disable that, enable <b>Advanced Features</b> in the <b>View</b> menu.
+              </p>
+              <a href="media/images/active_directory/active_directory_basics/active_directory_basics_4.png">
+                <img src="media/images/active_directory/active_directory_basics/active_directory_basics_4.png" class="img-center">
+              </a>
+              <p>
+                This will show additional containers and will allow to disable the accidental deletion protection. Right-click the <b>OU</b>, go to <b>Properties</b>
+                and disable it in the <b>Object</b> tab.
+              </p>
+              <a href="media/images/active_directory/active_directory_basics/active_directory_basics_5.png">
+                <img src="media/images/active_directory/active_directory_basics/active_directory_basics_5.png" class="img-center">
+              </a>
+              <p>
+                After unchecking the box, you can right-click on the <b>OU</b> and finally delete it.
+              </p>
+              <p>
+                To delete an user, you can just right-click it and press <b>Delete</b>.
+              </p>
+          </dd>
+        </section>
+        <section class="content-block">
+          <dt><li><b>Delegation</b></li></dt>
+          <dd>
+            <p>
+              In <b>AD</b> you can give specific users control over some <b>OUs</b>. The process is known as <b>delegation</b> and grants specific users 
+              privileges to perform advanced tasks without a <b>Domain Administrator</b> stepping in. Let's say we want to give someone in the IT Department 
+              the ability to reset the Teachers' passwords. Right-click the <b>OU</b>, press <b>Delegate Control</b>.
+            </p>
+            <a href="media/images/active_directory/active_directory_basics/active_directory_basics_6.png">
+              <img src="media/images/active_directory/active_directory_basics/active_directory_basics_6.png" class="img-center">
+            </a>
+            <p>
+              When the Wizard pops up, press <b>Next</b>, then <b>Add</b>
+            </p>
+            <a href="media/images/active_directory/active_directory_basics/active_directory_basics_7.png">
+              <img src="media/images/active_directory/active_directory_basics/active_directory_basics_7.png" class="img-center">
+            </a>
+            <p>
+              Enter the name and press <b>Check Names</b> to make sure it's correct. Then press <b>Next</b>. In this next tab, you can select tasks to delegate.
+            </p>
+            <a href="media/images/active_directory/active_directory_basics/active_directory_basics_8.png">
+              <img src="media/images/active_directory/active_directory_basics/active_directory_basics_8.png" class="img-center">
+            </a>
+            <p>
+              Press <b>Next</b>, then <b>Finish</b> and now Li Wey can change the password of anyone in Teachers.
+            </p>
+            <p>
+              If now <code>Li Wey</code> tries to change <code>Olivia Smith's</code> password through the same <b>Active Directory Users and Computers</b>, he won't
+              be able, because he does not have enough privileges to open it. Instead, he has to use <b>powershell</b>:
+            </p>
+            <pre><code>PS C:\Users\liwey> Set-ADAccountPassword oliviasmith -Reset -NewPassword (Read-Host `
+-AsSecureString -Prompt 'New Password')
+New Password: ********</code></pre>
+            <p>
+              We can force a password reset at next logon:
+            </p>
+            <code>PS C:\Users\liwey> Set-ADUser -ChangePasswordAtLogon $true -Identity oliviasmith</code>
+            <p>
+              <b>Note</b>: to use <b>Active Directory</b> related cmdlets and software, <b>Remote Server Administration Tools</b> need to be installed on the computer.
+              The administrator account has to run:
+            </p>
+            <code>PS C:\Users\Administrator> Install-WindowsFeature RSAT-AD-TOOLS -IncludeAllSubFeature</code>
+          </dd>
+        </section>
+        <section class="content-block">
+          <dt><li><b>Managing Computers</b></li></dt>
+          <dd>
+            <p>
+              By default, all computers that join a domain, except the <b>DC</b>, are put in a container called <b>Computers</b>.
+            </p>
+            <p>
+              It is a good ideea to separate all the computers in different containers, as needed, such as <b>Workstations</b>, <b>Servers</b> and <b>Domain Controllers</b>.
+            </p>
+          </dd>
+        </section>
+      </dl>
+      <section>
+        <h2>Managing Group Policies</h2>
+        <p>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus, aspernatur. Non sunt nisi accusantium quis autem repellendus beatae vero expedita, unde alias, modi obcaecati sapiente, officiis quisquam nesciunt voluptas numquam!
+        </p>
+      </section>
     </section>
     <footer>
       <p> 2025 sudosecurity | Tufescu Dragos</p>
