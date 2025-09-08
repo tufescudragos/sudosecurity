@@ -17,16 +17,16 @@
   </header>
 
   <main>
-    <section>
+    <section><!---->
       <h2>Windows Domains</h2>
       <section class="content-block">
         <p>
           In a small network, with a few computers and users, configuring and troubleshooting each machine isn't a problem. However, in most cases,
           typical networks contain a large number of computers, servers, printers, users etc. Managing each as a separate entity can become very confusing and repetitive.
-          To overcome these challanges, <b>Windows Domains</b> can be used.
+          To overcome these challenges, <b>Windows Domains</b> can be used.
         </p>
         <p>
-          Simply, a <b>Windows Domain</b> is a group of users and computers under the administration of a given entity. Its main idea is to centralise the administration of 
+          Simply, a <b>Windows Domain</b> is a group of users and computers under the administration of a given entity. Its main idea is to centralize the administration of 
           common components of a Windows computer network in a single repository called <b>Active Directory(AD)</b>. The server that runs the <b>Active Directory</b> is 
           called <b>Domain Controller(DC)</b>.
         </p>
@@ -41,23 +41,26 @@
         </ul>
         <p>
           <b>Active Directories</b> are very common. For example, at the local library, you most likely cannot access the <b>Control Panel</b> on the computers. 
-          This is because a security policy prevents you from doing that. Also, it stores credidentials, so you can use them on any machine.
+          This is because a security policy prevents you from doing that. Also, it stores credentials, so you can use them on any machine.
         </p>
       </section>
     </section>
-    <section>
+
+
+
+    <section><!---->
       <h2>Active Directory</h2>
       <section class="content-block">
         <p>
           The core of any <b>Windows Domain</b> is the <b>Active Directory Domain Service(AD DS)</b>. This is like a catalogue that holds the information of all the "objects" on the network.
-          Amongst the objects supported by <b>AD</b>, there are users, groups, machines, printers, shares and many other. Objects in <b>AD</b>:
+          Amongst the objects supported by <b>AD</b>, there are users, groups, machines, printers, shares and many others. Objects in <b>AD</b>:
         </p>
       </section>
       <ul>
         <li>
           <section class="content-block">
             <p>
-              <b>Users</b> are one of the most common onject types in <b>AD</b>. Users are objects known as <b>security principals</b>, which means that they can be authenticated by the domain 
+              <b>Users</b> are one of the most common object types in <b>AD</b>. Users are objects known as <b>security principals</b>, which means that they can be authenticated by the domain 
               and be assigned control over resources like files or printers. <b>Security principal</b> = object that can act upon resources on the network. Users can be:
               <ul>
                 <li><b>People</b>: real people that need to access the network, like employees.</li>
@@ -71,7 +74,7 @@
             <p>
               <b>Machines</b>: for every computer that joins the <b>AD</b>, a machine object is created. They are also <b>security principals</b> and are assigned accounts, which are 
               local administrators on the assigned computer and are not supposed to be used on any other computer. Machine account 
-              passwords are randomly rotated and are generally comprised of 120 random characters. The machine account name is the 
+              passwords are randomly rotated and are generally comprised of 120 random bits. The machine account name is the 
               computer's name followed by a $.
             </p>
           </section>
@@ -79,7 +82,7 @@
         <li>
           <section class="content-block">
             <p>
-              <b>Security groups</b>: used to assign acces rights to files or other resources to entire 
+              <b>Security groups</b>: used to assign access rights to files or other resources to entire 
               groups instead of individual users. <b>security groups</b> are also considered <b>security 
               principals</b>. Groups can have both users and machines as members and can also include 
               other groups.
@@ -110,13 +113,13 @@
         <p>
           Running <b>"Active Directory Users and Computers"</b> on the <b>Domain Controller</b> allows for the configuration of users, groups and machines:
         </p>
-        <p>This will open a hirearchy of users, computers and groups that exist on the domain. They are organised in <b>Organisation Units(OUs)</b>. These are container
+        <p>This will open a hierarchy of users, computers and groups that exist on the domain. They are organised in <b>Organizational Units(OUs)</b>. These are container
           objects with the purpose of classifying users and machines. They are mainly used to group users/computers with similar policies. A user can be part of a 
           single <b>OU</b> at a time. 
         </p>
         <p>
           Here, you can add <b>OUs</b>, organise them, add users, set them up, move them around. You can also access individual user 
-          properties, where you can edit names, change passwords, set remote control up etc. Delegations can be set up here to.
+          properties, where you can edit names, change passwords, set remote control up etc. Delegations can be set up here too.
         </p>
       </section>
       <section class="content-block">
@@ -128,7 +131,7 @@
            and Workstations. A layout like this is expected, but it is not always used. 
         </p>
         <p>
-          Typically, this structure mimmics the actual business' structure, because it allows for easier policy deployment.
+          Typically, this structure mimics the actual business' structure, because it allows for easier policy deployment.
         </p>
       </section>
       <section class="content-block">
@@ -143,7 +146,7 @@
           There are some default containers apart from the OFFICE. They are automatically configured by Windows.
           <ul>
             <li><b>Builtin</b>: Contains default groups available to any Windows host.</li>
-            <li><b>Computers</b>: Any machine that joins the domain gets put here by defaut and can be moved as needed.</li>
+            <li><b>Computers</b>: Any machine that joins the domain gets put here by default and can be moved as needed.</li>
             <li><b>Domain Controllers</b>: Contains the <b>DCs</b> by default.</li>
             <li><b>Users</b>: Default users and groups.</li>
             <li><b>Managed Service Accounts</b>: Accounts used by services in the domain.</li>
@@ -151,7 +154,10 @@
         </p>
       </section>
     </section>
-    <section>
+
+
+
+    <section><!---->
       <h2>Managing users and computers</h2>
       <dl>
         <section class="content-block">
@@ -208,9 +214,7 @@
               If now <code>Li Wey</code> tries to change <code>Olivia Smith's</code> password through the same <b>Active Directory Users and Computers</b>, he won't
               be able, because he does not have enough privileges to open it. Instead, he has to use <b>powershell</b>:
             </p>
-            <pre><code>PS C:\Users\liwey> Set-ADAccountPassword oliviasmith -Reset -NewPassword (Read-Host `
--AsSecureString -Prompt 'New Password')
-New Password: ********</code></pre>
+            <p><code>PS C:\Users\liwey> Set-ADAccountPassword oliviasmith -Reset -NewPassword (Read-Host -AsSecureString -Prompt 'New Password')</code></p>
             <p>
               We can force a password reset at next logon:
             </p>
@@ -229,15 +233,313 @@ New Password: ********</code></pre>
               By default, all computers that join a domain, except the <b>DC</b>, are put in a container called <b>Computers</b>.
             </p>
             <p>
-              It is a good ideea to separate all the computers in different containers, as needed, such as <b>Workstations</b>, <b>Servers</b> and <b>Domain Controllers</b>.
+              It is a good idea to separate all the computers in different containers, as needed, such as <b>Workstations</b>, <b>Servers</b> and <b>Domain Controllers</b>.
             </p>
           </dd>
         </section>
       </dl>
-      <section>
-        <h2>Managing Group Policies</h2>
+    </section>
+
+
+
+    <section><!---->
+      <h2>Managing Group Policies</h2>
+      <section class="content-block">
+        <a href="media/images/active_directory/active_directory_basics/active_directory_basics_9.png">
+          <img src="media/images/active_directory/active_directory_basics/active_directory_basics_9.png" class="img-right">
+        </a>
         <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus, aspernatur. Non sunt nisi accusantium quis autem repellendus beatae vero expedita, unde alias, modi obcaecati sapiente, officiis quisquam nesciunt voluptas numquam!
+          We have organised users and computers in <b>OUs</b>, but not with any real functionality. The idea is to be able to deploy different policies 
+          for each <b>OU</b> individually. This way, we can push different security configurations to users depending on their department.
+        </p>
+        <p>
+          We can manage these properties through <b>Group Policy Objects(GPO)</b>. They are a collection of settings that can be applied to OUs. They contain 
+          policies aimed at either users or computers. 
+        </p>
+        <p>
+          To configure them, the <b>Group Policy Management</b> tool is used.
+        </p>
+        <p>
+          The interface might look a bit overwhelming, but is really used to get a grasp on.
+        </p>
+        <p>
+          The first thing you can see is the <b>GPOs</b> hierarchy. To configure a <b>Group Policy</b>, first create a <b>GPO</b> under <b>Group Policy Objects</b>
+          and then link it to the <b>OU</b> where you want policies to apply.
+        </p>
+        <p>
+          We can see that there are already 3 <b>GPOs</b> created. The <b>Domain Default Policy</b> is linked to the whole domain, so it has effect over everything.
+          The <b>IT Dept Policy</b> is linked to the <b>Teachers OU</b>. It is the delegation we created earlier. The <b>Default Domain Controllers Policy</b> is 
+          the default policy applied to <b>Domain Controllers</b> in the domain. Because the <b>Default Domain Policy</b> is at the root, it applies to all <b>OUs</b>,
+          which means even the <b>Admins OU</b> will be affected. Any <b>GPO</b> will apply to any linked <b>OU</b> and also all the <b>sub-OUs</b>.
+        </p>
+      </section>
+      <section class="content-block">
+        <a href="media/images/active_directory/active_directory_basics/active_directory_basics_10.png">
+          <img src="media/images/active_directory/active_directory_basics/active_directory_basics_10.png" class="img-center">
+        </a>
+      </section>
+      <section class="content-block">
+        <p>
+          Let's examine a <b>GPO</b> in detail: the <b>Default Domain Policy</b>.
+        </p>
+        <a href="media/images/active_directory/active_directory_basics/active_directory_basics_11.png">
+          <img src="media/images/active_directory/active_directory_basics/active_directory_basics_11.png" class="img-center">
+        </a>
+        <p>
+          We can see in the <b>scope</b> tab that it is only linked to <b>thm.local</b>. This means it applies to the whole domain. Here, we can apply <b>security filtering</b>,
+          so that the <b>GPO</b> is only applied to specific users/computers under the <b>OU</b>. <b>Authenticated Users</b> group includes all users and computers.
+        </p>
+      </section>
+      <section class="content-block">
+        <p>
+          The settings tab includes the actual contents of the <b>GPO</b> and tells us the specific configurations it applies. Each <b>GPO</b> has a configuration 
+          that applies only to users and one that applies to machines only. The <b>Default Domain Policy GPO</b> only contains Computer Configurations. It contains 
+          very basic configurations that should apply to most domains, like password and account lockout policies.
+        </p>
+        <a href="media/images/active_directory/active_directory_basics/active_directory_basics_12.png">
+          <img src="media/images/active_directory/active_directory_basics/active_directory_basics_12.png" class="img-center">
+        </a>
+      </section>
+      <section class="content-block">
+        <p>
+          Let's say we want to edit the minimum passwords length for all computers across the whole domain. We will right-click the <b>Default Domain Policy</b>
+          and select <b>Edit</b>.
+        </p>
+        <a href="media/images/active_directory/active_directory_basics/active_directory_basics_13.png">
+          <img src="media/images/active_directory/active_directory_basics/active_directory_basics_13.png" class="img-center">
+        </a>
+        <p>
+          Navigate to the corresponding policy in <code>Computer Configurations -> Policies -> Windows Settings -> Security Settings -> Account Policies -> Password Policy</code>
+        </p>
+        <a href="media/images/active_directory/active_directory_basics/active_directory_basics_14.png">
+          <img src="media/images/active_directory/active_directory_basics/active_directory_basics_14.png" class="img-center">
+        </a>
+        <p>
+          After double-clicking the option, it is very easy to change it. Also, the <b>Explain</b> tab offers an explanation of the policy.
+        </p>
+      </section>
+      <section class="content-block">
+        <p>
+          <b>GPOs</b> are distributed to the network via a share called <code>SYSVOL</code>. It is stored in the <b>DC</b>. Each user should have access to this share 
+          to sync their <b>GPOs</b> periodically. The SYSVOL share points by default to <code>C:\Windows\SYSVOL\sysvol</code> directory on each DC.
+        </p>
+        <p>
+          After making changes to <b>GPOs</b>, it might take up to 2 hours for them to update on all computers. You can run the following command on any computer 
+          to sync its <b>GPOs</b> immediately:
+        </p> 
+        <p>
+          <code>PS C:\> gpupdate /force</code>
+        </p>
+      </section>
+    </section>
+
+    <section>
+      <h2>Authentication Methods</h2>
+      <section class="content-block">
+        <p>
+          When using a Windows domain, all authentication credentials are stored on the <b>Domain Controller</b>. Whenever a user tries to communicate with a service
+          using domain credentials, the service needs to ask the <b>Domain Controller</b> to verify if they are correct. Two protocols can be use:
+        </p>
+      </section>
+        <dl>
+          <dt><h3>Kerberos</h3> Used by any recent version of Windows. Default protocol in any recent domain</dt>
+          <dd>
+            <section class="content-block">
+              <p>
+                Kerberos is a network authentication protocol designed to provide secure authentication between clients and services over an insecure network.
+                It was originally developed at the Massachusetts Institute of Technology (MIT) and is widely used in enterprise environments, especially in 
+                Windows Active Directory domains.
+              </p>
+              <p>
+                The main goal of Kerberos is to prevent attackers from intercepting or tampering with authentication data.
+                Instead of sending passwords across the network, Kerberos uses tickets and symmetric-key cryptography to prove a user's identity.
+              </p>
+            </section>
+            <section class="content-block">
+              <p>
+                Key features:
+              </p>
+              <ul>
+                <li><p><b>Mutual Authentication</b>: Both the client and the server need to verify each other's identity.</p></li>
+                <li><p><b>Single Sign-On(SSO)</b>: A user logs in once and can access multiple services without re-entering their credentials.</p></li>
+                <li><p><b>Ticket-Based System</b>: Authentication is handled using temporary encrypted tickets rather than transmitting passwords.</p></li>
+                <li><p><b>Time-Sensitivity</b>: Kerberos relies on synchronized clocks; tickets have expiration times to reduce the risk of replay attacks.</p></li>
+              </ul>
+            </section>
+            <section class="content-block">
+              <p>
+                How it works(simplified):
+              </p>
+              <ol>
+                <li><b>Authentication Service (AS) Request</b> :
+                  <ul>
+                    <li><p>A user logs in and requests access from a <b>Authentication Server(AS).</b></p></li>
+                    <li><p>If valid, the <b>AS</b> provides a <b>Ticket Granting Ticket(TGT)</b> encrypted with the user's password.</p></li>
+                  </ul>
+                </li>
+                <li><b>Ticket Granting Service(TGS) Request</b> :
+                  <ul>
+                    <li><p>The client presents the TGT to the <b>Ticket Granting Server (TGS)</b> when accessing a resource.</p></li>
+                    <li><p>The TGS issues a <b>Service Ticket</b> for the requested service.</p></li>
+                  </ul>
+                </li>
+                <li><b>Service Request</b> :
+                  <ul>
+                    <li><p>The client presents the <b>Service Ticket</b> to the target server.</p></li>
+                    <li><p>The server validates it and allows access without needing the user's password again.</p></li>
+                  </ul>
+                </li>
+              </ol>
+            </section>
+            <section class="content-block">
+              <p><b>Advantages</b></p>
+              <ul>
+                <li>Eliminates sending plaintext passwords over the network.</li>
+                <li>Provides strong authentication and reduces risk of impersonation.</li>
+                <li>Efficient for large-scale environments thanks to Single Sign-On.</li>
+              </ul>
+            </section>
+            <section class="content-block">
+              <p><b>Limitations</b></p>
+              <ul>
+                <li>Requires synchronized time between clients and servers.</li>
+                <li>If the <b>Key Distribution Center (KDC)</b> (which includes AS and TGS) is compromised, the entire system's security is at risk.</li>
+                <li>Complex setup and management compared to simpler authentication methods.</li>
+              </ul>
+            </section>
+          </dd>
+
+
+
+          <dt><h3>NetNTLM</h3> Legacy authentication protocol kept for compatibility purposes. It should be considered obsolete, but most networks still have it enabled</dt>
+          <dd>
+            <section class="content-block">
+              <p>
+                <b>NetNTLM</b> is a challenge-response authentication protocol used primarily in Microsoft Windows networks to authenticate users over network connections.
+                It is a successor to the older LAN Manager (LM) and NTLMv1 protocols, designed to improve security while maintaining compatibility with legacy systems.
+              </p>
+              <p>
+                <b>NetNTLM</b> is commonly used in SMB (Server Message Block), HTTP, and other network authentication scenarios where <b>NetNTLM</b> is not available or cannot be used.
+              </p>
+            </section>
+            <section class="content-block">
+              <p>
+                <b>Key Features</b>:
+              </p>
+              <ul>
+                <li><p><b>Challenge-Response Mechanism</b>: The server sends a challenge (a random value), and the client responds with a hash derived
+                  from the user's password and the challenge. This means the password itself is never transmitted over the network.</p></li>
+                <li><p><b>Backward Compatibility</b>: Works with older Windows systems that do not support Kerberos.</p></li>
+                <li><p><b>Hash-Based Authentication</b>: Uses MD4/MD5 and HMAC functions to generate authentication responses.</p></li>
+            </ul>
+            </section>
+            <section class="content-block">
+              <p>
+                How it works(simplified):
+              </p>
+              <ol>
+                <li><b>Negotiation Phase</b> :
+                  <ul>
+                   <li><p>The client and server agree to use <b>NetNTLM</b> for authentication.</p></li>
+                  </ul>
+                 </li>
+                <li><b>Challenge Phase</b> :
+                  <ul>
+                    <li><p>The server sends a random <b>challenge</b> to the client</p></li>
+                  </ul>
+                </li>
+                <li><b>Response Phase</b> :
+                  <ul>
+                    <li><p>The client calculates a <b>response</b> using the hash of the user's password and the server's challenge.</p></li>
+                    <li><p>The client sends this response back to the server.</p></li>
+                  </ul>
+                </li>
+                <li><b>Validation Phase</b> :
+                  <ul>
+                    <li><p>The server compares the response with its own calculation (using the stored password hash).</p></li>
+                    <li><p>If the values match, the user is authenticated.</p></li>
+                  </ul>
+                </li>
+              </ol>
+            </section>
+            <section class="content-block">
+            <p><b>Advantages</b></p>
+              <ul>
+                <li>Does not transmit passwords in plaintext, reducing the risk of interception.</li>
+                <li>Simple to implement and compatible with legacy systems.</li>
+              </ul>
+            </section>
+            <section class="content-block">
+              <p><b>Limitations</b></p>
+              <ul>
+                <li>Vulnerable to pass-the-hash attacks: If an attacker obtains the NTLM hash, they can authenticate without knowing the actual password.</li>
+                <li>Weaker security than Kerberos: MD4-based hashing and lack of mutual authentication make it less secure.</li>
+                <li>No built-in ticketing or Single Sign-On like Kerberos.</li>
+              </ul>
+            </section>
+          </dd>
+        </dl>
+    </section>
+    
+
+
+    <section>
+      <h2>Trees, Forests and Trusts</h2>
+      <section class="content-block">
+        <p>
+          We have covered how to manage a single domain, the role of a <b>DC</b> and how it manages computers, servers and users.
+        </p>
+        <a href="media/images/active_directory/active_directory_basics/active_directory_basics_15.png">
+          <img src="media/images/active_directory/active_directory_basics/active_directory_basics_15.png" class="img-center">
+        </a>
+        <p>
+          As companies grow, so do their networks. Sometimes, you might need to add new domains.
+        </p>
+      </section>
+      <section class="content-block">
+        <h3>Trees</h3>
+        <p>
+          You might need, for example, another domain in another country, with different laws and regulations, so different <b>GPOs</b>. <b>Active Directory</b>
+          supports integrating multiple domains, so you can partition your network into units that can be managed independently. If you have two domains with the 
+          same namespace, for example office.local, you can join them in a <b>Tree</b>.
+        </p>
+        <a href="media/images/active_directory/active_directory_basics/active_directory_basics_16.png">
+          <img src="media/images/active_directory/active_directory_basics/active_directory_basics_16.png" class="img-center">
+        </a>
+        <p>
+          A new security group needs to be introduced with <b>trees</b> and <b>forests</b>. The <b>Enterprise Admins</b> group will grant a user administrative 
+          privileges over an enterprise's domains.
+        </p>
+      </section>
+      <section class="content-block">
+        <h3>Forests</h3>
+        <p>
+          The domains can also be configured in different namespaces. The union of several trees with different namespaces is known as a <b>forest</b>.
+          For example, when a company acquires another one.
+        </p>
+        <a href="media/images/active_directory/active_directory_basics/active_directory_basics_17.png">
+          <img src="media/images/active_directory/active_directory_basics/active_directory_basics_17.png" class="img-center">
+        </a>
+      </section>
+      <section class="content-block">
+        <h3>Trust Relationships</h3>
+        <p>
+          At some point, a user on a domain might need to access a file on another domain. For this to happen, domains in <b>trees</b> and <b>forests</b> are joined 
+          together by <b>trust relationships</b>.
+        </p>
+        <a href="media/images/active_directory/active_directory_basics/active_directory_basics_17.png">
+          <img src="media/images/active_directory/active_directory_basics/active_directory_basics_18.png" class="img-center">
+        </a>
+        <p>
+          In the picture example, domain 1 trusts domain 2, which means that a user on domain 2 can be authorised to access resources on domain 1. The direction of 
+          a one-way trust is contrary to that of the access direction.
+        </p>
+        <p>
+          <b>Two-way trust relationships</b> can be made to allow both domains to mutually authorise users from the other. By default, joining domains under a 
+          tree or forest forms a two-way trust relationship.
+        </p>
+        <p>
+          Having a trust relationship doesn't automatically allow access over the files, the access still needs to be authorised to be performed.
         </p>
       </section>
     </section>
