@@ -85,6 +85,9 @@ footer {
 p {
   text-indent: 1em;
 }
+li p{
+  text-indent: 0em;
+}
 .img-right {
   float: right;
   margin: 0 0 1rem 1rem;
@@ -135,7 +138,6 @@ pre{
     margin: 1rem auto;
     max-width: 100%;
   }
-
   .content-block {
     text-align: center;
   }

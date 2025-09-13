@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Cryptography Basics</title>
+</head>
+<body>
+  <header>
+    <h1>Cryptography Basics</h1>
+    <p>
+      This article provides basic information about cryptography: its definition, origins, how it works, how it is
+      implemented, and its many use cases. 
+    </p>
+  </header>
+  <main>
+<section>
+  <h2>What is Cryptography?</h2>
+
+  <section class="content-block">
+    <p>
+      Cryptography is the practice and study of techniques for secure communication, in situations where adversaries might attempt to intercept, read, or modify 
+      messages.
+    </p>
+  </section>
+
+  <section class="content-block">
+    <p>
+      Implementing cryptographic protocols is essential whenever a connection is established. For example, in messaging platforms, it prevents third parties 
+      from reading conversations. When browsing the internet, it helps verify the identity of accessed websites. When connecting to a remote host 
+      using SSH, cryptography secures communication so that no one can eavesdrop.
+    </p>
+    <p>
+      When downloading a file, cryptography also provides a way of verifying whether the download was successful and complete.
+    </p>
+  </section>
+
+  <section class="content-block">
+    <p>
+      Cryptography is one of the main pillars of the digital world. While networking protocols make it possible for devices across the globe to communicate, cryptography
+      allows us to trust the connection and ensure that communications are authentic.
+    </p>
+    <p>
+      Complex mathematics and computer science lie at the foundation of cryptography.
+    </p>
+  </section>
+
+  <section class="content-block">
+    <p>
+      As mathematics, algorithms, and processing power evolve, some cryptographic methods become obsolete.
+    </p>
+    <p>
+      In many countries, the export, import, or use of strong encryption is regulated by law. Violating these regulations can result in severe penalties.
+      Additionally, governments may require companies to provide access to encrypted data under certain circumstances, such as criminal investigations or national security cases.
+      While encryption protects privacy and sensitive information, it can also complicate law enforcement efforts, creating a balance that lawmakers and organizations 
+      must carefully navigate. Therefore, understanding both the technical and legal aspects of cryptography is essential for individuals and businesses that handle 
+      confidential data.
+    </p>
+  </section>
+</section>
+
+
+
+<section>
+  <h2>Basic Terminology</h2>
+
+  <section class="content-block">
+    <p>
+      The cryptography literature commonly uses the names <b>Alice (A)</b> for the sender and <b>Bob (B)</b> for the intended receiver.
+    </p>
+  </section>
+
+  <section class="content-block">
+    <p>
+      The message we want to encrypt is called <b>plaintext</b>. It is readable data and can be a photo, credit card information, or simple text.
+    </p>
+    <p>
+      The plaintext is passed through the encryption algorithm along with the key. This produces <b>ciphertext</b>. The function is part of the <b>cipher</b>.
+    </p>
+    <p>
+      The cipher is the algorithm used to convert plaintext into ciphertext and vice versa.
+    </p>
+    <a href="media/images/cryptography/cryptography_basics/cryptography_basics_1.png">
+      <img src="media/images/cryptography/cryptography_basics/cryptography_basics_1.png" class="img-center" alt="Diagram showing plaintext encryption process">
+    </a>
+    <p>
+      To recover the plaintext, we must pass the ciphertext and the correct key through the decryption function. This returns the original plaintext.
+    </p>
+    <a href="media/images/cryptography/cryptography_basics/cryptography_basics_2.png">
+      <img src="media/images/cryptography/cryptography_basics/cryptography_basics_2.png" class="img-center" alt="Diagram showing ciphertext decryption process">
+    </a>
+  </section>
+
+  <section class="content-block">
+    <h3>Key Terms</h3>
+    <ul>
+      <li><p><b>Plaintext</b> – the original, readable message before encryption.</p></li>
+      <li><p><b>Ciphertext</b> – the scrambled, unreadable version of the message after encryption. No information about the plaintext should be obtainable from the ciphertext alone.</p></li>
+      <li><p><b>Cipher</b> – an algorithm or method to convert plaintext to ciphertext and vice versa.</p></li>
+      <li><p><b>Key</b> – a string of bits used by the cipher to encrypt or decrypt. The cipher can be public knowledge, but the key must remain secret.</p></li>
+      <li><p><b>Encryption</b> – the process of converting plaintext into ciphertext using a cipher and a key.</p></li>
+      <li><p><b>Decryption</b> – the process of converting ciphertext back into plaintext using a cipher and a key. Recovering the plaintext without the key should be infeasible.</p></li>
+    </ul>
+  </section>
+</section>
+
+<section>
+  <h2>History of Cryptography</h2>
+
+  <section class="content-block">
+    <h3>1. Ancient Cryptography</h3>
+    <p>
+      Cryptography began in <b>ancient times</b> when people needed to send secret messages, especially in military or diplomatic contexts.
+    </p>
+    <p>
+      <b>Ancient Egypt:</b> The earliest examples of cryptography come from around 1900 BCE, where scribes used special symbols and simple substitutions to hide information.
+    </p>
+    <p>
+      <b>Ancient Rome:</b> Julius Caesar used the famous <b>Caesar Cipher</b>. Letters in a message were shifted by a fixed number in the alphabet. For example, with a shift of 3, "A" becomes "D" and "B" becomes "E". This is a simple substitution cipher.
+    </p>
+  </section>
+
+  <section class="content-block">
+    <h3>2. 19th Century – Early Modern Cryptography</h3>
+    <p>
+      With the Industrial Revolution and long-distance communications, cryptography became increasingly important.
+    </p>
+    <ul>
+      <li><b>Telegraphy and Morse code:</b> Messages transmitted by telegraph required special codes for security.</li>
+      <li><b>Military cryptography:</b> Armies used mechanical ciphers to protect communications during wars.</li>
+    </ul>
+  </section>
+
+  <section class="content-block">
+    <h3>3. 20th Century – Mechanical and Electronic Cryptography</h3>
+    <p>
+      The major leap in cryptography came during <b>World War I and II</b>.
+    </p>
+    <ul>
+      <li><b>Enigma Machine:</b> Used by the Nazis, this electromechanical machine created codes that were extremely hard to break.</li>
+      <li><b>Bletchley Park and Alan Turing:</b> The British team led by Turing broke the Enigma codes, changing the course of the war.</li>
+      <li><b>Early electronic cryptography:</b> Computers began to be used for encrypting and decrypting messages.</li>
+    </ul>
+  </section>
+
+  <section class="content-block">
+    <h3>4. Cryptography in the Digital Age</h3>
+    <p>
+      With the advent of the <b>internet</b>, cryptography became essential for digital security.
+    </p>
+    <ul>
+      <li><b>Symmetric cryptography:</b> Same key for encryption and decryption (e.g., AES).</li>
+      <li><b>Asymmetric cryptography:</b> Different keys for encryption and decryption (e.g., RSA, Diffie-Hellman), used for digital signatures and secure transactions.</li>
+      <li>Modern cryptography protects nearly all digital communication: emails, instant messaging, online payments, and secure servers.</li>
+    </ul>
+  </section>
+
+  <section class="content-block">
+    <h3>5. Future of Cryptography</h3>
+    <p>
+      Cryptography continues to evolve:
+    </p>
+    <ul>
+      <li><b>Quantum cryptography:</b> Uses quantum mechanics to create theoretically unbreakable communication.</li>
+      <li><b>Post-quantum algorithms:</b> Being developed to resist future quantum computers, which could break many current cryptographic methods.</li>
+    </ul>
+  </section>
+</section>
+
+<section>
+  <h2>Types of Encryption</h2>
+  <section class="content-block">
+    <h3>Symmetric Encryption</h3>
+    <p>
+      <b>Symmetric encryption</b> (also called private key cryptography) uses the same key to both encrypt and decrypt the data. Keeping 
+      the key secret is mandatory, and maintaining secrecy becomes increasingly difficult if there are many recipients. 
+    </p>
+    <p>
+      An example is when you protect a document with a password and then want to send it to someone. The encrypted document can be transmitted, but the password cannot.
+      Anyone intercepting the communication could access the key and break the encryption, defeating its purpose. 
+    </p>
+    <a href="media/images/cryptography/cryptography_basics/cryptography_basics_3.png">
+      <img src="media/images/cryptography/cryptography_basics/cryptography_basics_3.png" class="img-center" alt="Diagram of symmetric encryption process">
+    </a>
+  </section>
+  <section class="content-block">
+    <p>
+      <b>Examples:</b>
+    </p>
+    <ul>
+      <li><p><b>DES (Data Encryption Standard)</b> became a standard in 1977 and used a 56-bit key. With advancements in computing power, it was broken in 1999 in less than a day.</p></li>
+      <li><p><b>3DES (Triple Data Encryption Standard)</b> applies DES three times. The key size is 168 bits, although it is as effective as a 112-bit key. It was deprecated in 2019 and should be replaced by AES, but may still be found in legacy systems.</p></li>
+      <li><p><b>AES (Advanced Encryption Standard)</b> was adopted in 2001. It supports key sizes of 128, 192, or 256 bits and is widely used today.</p></li>
+    </ul>
+  </section>
+
+  <h3>Asymmetric Encryption</h3>
+  <section class="content-block">
+    <p>
+      Unlike symmetric encryption, which uses the same key for both encryption and decryption, <b>asymmetric encryption</b> uses a pair of keys: one for encryption and one for decryption.
+      It encrypts data using the public key, which is why it is also called <b>public key cryptography</b>.
+    </p>
+    <a href="media/images/cryptography/cryptography_basics/cryptography_basics_4.png">
+      <img src="media/images/cryptography/cryptography_basics/cryptography_basics_4.png" class="img-center" alt="Diagram of asymmetric encryption process">
+    </a>
+  </section>
+  <section class="content-block">
+    <p>
+      Two well-known examples are RSA and Diffie-Hellman. The two keys are called the <b>public key</b> and the <b>private key</b>. Data is encrypted with the public key and decrypted with the 
+      private key. The private key must remain secret.
+    </p>
+    <p>
+      Asymmetric encryption is generally slower and uses larger keys than symmetric encryption. For example, RSA commonly uses 2048, 3072, or 4096-bit keys.
+    </p>
+    <p>
+      Asymmetric encryption relies on mathematical problems that are easy to compute in one direction but practically impossible to reverse without the key.
+      These include <i>integer factorization</i> (RSA) and <i>discrete logarithms</i> (Diffie-Hellman, ECC). Solving them with today’s technology would take millions of years.
+    </p>
+  </section>
+  <section class="content-block">
+    <p>
+      The key point to remember is that asymmetric encryption provides a <b>public key</b> that you share with everyone, and a <b>private key</b> which must remain secret.
+    </p>
+  </section>
+</section>
+    <footer>
+      <p>2025 sudosecurity | Tufescu Dragos</p>
+    </footer>
+  </main>
+</body>
+</html>
