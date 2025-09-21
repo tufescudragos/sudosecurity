@@ -59,7 +59,7 @@
 
           <dt><b>Cryptocurrency and Blockchain</b></dt>
           <dd>
-            <p>Users have private keys that sign transactions and public keys that others use to verify them. This ensures ownership, prevents tampering, and secures blockchain transactions.</p>
+            <p>Users have private keys to sign transactions and public keys that others use to verify them. This ensures ownership, prevents tampering, and secures blockchain transactions.</p>
           </dd>
         </dl>
       </section>
@@ -70,50 +70,50 @@
         </p>
       </section>
     </section>
+
     <section>
       <h2>RSA</h2>
       <section class="content-block">
         <p>
-          RSA is a public-key cryptography algorithm used to secure data. Security comes ftom the difficulty of factoring very large numbers (multiplying is easy,
-          factoring back is hard). It uses key sizes of 1024bits, 2048bits, 3072bits or 4096bits(309, 617, 925, 1234 digits), while the prime numbers used are about half 
-          that size.
+          RSA is a public-key cryptography algorithm used to secure data. Its security comes from the difficulty of factoring very large numbers (multiplication is easy, factoring back is hard). 
+          Typical key sizes are 1024, 2048, 3072, or 4096 bits (roughly 309, 617, 925, and 1234 digits). The prime numbers used are about half that size.
         </p>
       </section>
+
       <h3>What is modulo (%)?</h3>
       <section class="content-block">
         <p>
-          Modulo operation is defined as the reminder of a number when divided by another number.
-          % symbol is used. E.g. 151 / 50 = 3 remainder 1 so 151 % 30 = 1. 7428 % 536 = 460.
-          For the math in the following example, <a href="https://www.wolframalpha.com/" target="_blank">Wolfram Alpha</a> can be used.
+          The modulo operation gives the remainder after division. The symbol <code>%</code> is used.  
+          Example: 151 ÷ 50 = 3 remainder 1, so 151 % 50 = 1.  
+          Another example: 7428 % 536 = 460.  
+          For calculations in the example below, you can use <a href="https://www.wolframalpha.com/" target="_blank">Wolfram Alpha</a>.
         </p>
       </section>
+
       <h3>How it works</h3>
       <section class="content-block">
-        <p>
-          We'll follow the classic analogy of Bob and Alice:
-        </p>
+        <p>We'll follow the classic analogy of Bob and Alice:</p>
         <ol>
-          <li><p>Bob chooses two prime numbers: <b>p = 10007</b> and <b>q = 99991</b>. He calculates <b>n = p * q = 1000609937</b></p></li>
-          <li><p>Let <b>T</b> (Totient) <b>= (p-1)(q-1) = 1000499940</b></p></li>
-          <li><p><b>e</b> is a number relatively prime to <b>T</b>, usually 65537</p></li>
-          <li><p><b>d</b> is another number, such that <b>(e * d) % T = 1</b>. In our case d = 662506613</p></li>
-          <li><p>The public key is <b>(n, e) i. e. (1000609937, 65537)</b>. The private key is <b>(n, d) = (1000609937, 662506613)</b></p></li>
-          <li><p>Let's say the value we want to encrypt is <b>x = 14082007</b>. Alice calculates and sends <b>y = x<sup>e</sup> % n</b>. She gets both <b>n</b> and 
-            <b>e</b> from the public, shared key. So <b>y = 14082007<sup>65537</sup> % 1000609937 = 306497210</b></p></li>
-          <li><p>Bob decrypts the value calculating <b>x = y<sup>d</sup> % n</b>. He gets both <b>n</b> and <b>d</b> from his private, unshared key.
-            So <b>x = 306497210<sup>662506613</sup> % 1000609937 = 14082007</b></p></li>
+          <li><p>Bob chooses two prime numbers: <b>p = 10007</b> and <b>q = 99991</b>. He calculates <b>n = p * q = 1000609937</b>.</p></li>
+          <li><p>He computes Euler's totient: <b>T = (p-1)(q-1) = 1000499940</b>.</p></li>
+          <li><p>Bob chooses <b>e</b>, a number relatively prime to <b>T</b>. A common choice is 65537.</p></li>
+          <li><p>He calculates <b>d</b> such that <b>(e * d) % T = 1</b>. In this case, <b>d = 662506613</b>.</p></li>
+          <li><p>The public key is <b>(n, e) = (1000609937, 65537)</b>. The private key is <b>(n, d) = (1000609937, 662506613)</b>.</p></li>
+          <li><p>Suppose Alice wants to send a secret number <b>x = 14082007</b>. She computes <b>y = x<sup>e</sup> % n</b>. Using Bob's public key, she gets <b>y = 14082007<sup>65537</sup> % 1000609937 = 306497210</b>.</p></li>
+          <li><p>Bob decrypts the ciphertext with his private key: <b>x = y<sup>d</sup> % n</b>. So <b>x = 306497210<sup>662506613</sup> % 1000609937 = 14082007</b>.</p></li>
         </ol>
       </section>
+
       <section class="content-block">
         <p>
-          This way, the message was safely transmitted and is unreadable by any third party, without sending any private keys over the network.
+          In this way, the message is safely transmitted and unreadable by any third party—without ever sending private keys over the network.
         </p>
       </section>
     </section>
   </main>
 
   <footer>
-    <p>2025 Sudosecurity | Tufescu Dragos</p>
+    <p>© 2025 Sudosecurity | Tufescu Dragos</p>
   </footer>
 </body>
 </html>
