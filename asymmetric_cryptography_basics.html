@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Asymmetric Cryptography Basics</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Asymmetric Cryptography Basics</h1>
+    <p>
+      This article introduces the fundamentals of Asymmetric Cryptography (Public Key Cryptography), commonly used ciphers, and their roles.
+    </p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Introduction</h2>
+      <section class="content-block">
+        <p>Requirements in the cyber realm:</p>
+        <ul>
+          <li><b>Authenticity</b>: Ensure you are communicating with the right person and verify the source of information.</li>
+          <li><b>Integrity</b>: Ensure that no one alters the data you exchange.</li>
+          <li><b>Confidentiality</b>: Prevent eavesdropping on the conversation.</li>
+        </ul>
+        <p>Cryptography provides a way to satisfy these requirements.</p>
+      </section>
+    </section>
+
+    <section>
+      <h2>Common Uses</h2>
+      <section class="content-block">
+        <dl>
+          <dt><b>Secure Key Exchange</b></dt>
+          <dd>
+            <p>Symmetric cryptography is faster, but both parties need the same secret key. Asymmetric cryptography allows them to exchange a session key securely, after which they switch to symmetric cryptography for speed.</p>
+          </dd>
+
+          <dt><b>Encryption for Confidentiality</b></dt>
+          <dd>
+            <p>A sender encrypts a message with the recipient's public key. Only the recipient, with the corresponding private key, can decrypt it.</p>
+          </dd>
+
+          <dt><b>Digital Signatures</b></dt>
+          <dd>
+            <p>The sender signs data with their private key. Anyone can verify the signature using the sender's public key. This provides authentication, integrity, and non-repudiation.</p>
+          </dd>
+
+          <dt><b>Authentication</b></dt>
+          <dd>
+            <p>Systems can prove their identity using public/private key pairs instead of passwords. Example: SSH login with key-based authentication.</p>
+          </dd>
+
+          <dt><b>Digital Certificates</b></dt>
+          <dd>
+            <p>Used in SSL/TLS for HTTPS, digital certificates prove website authenticity and enable secure encrypted connections. Public key cryptography is at the core of this trust system.</p>
+          </dd>
+
+          <dt><b>Cryptocurrency and Blockchain</b></dt>
+          <dd>
+            <p>Users have private keys that sign transactions and public keys that others use to verify them. This ensures ownership, prevents tampering, and secures blockchain transactions.</p>
+          </dd>
+        </dl>
+      </section>
+
+      <section class="content-block">
+        <p>
+          In short, asymmetric cryptography enables secure communication, authentication, and verification, making it indispensable in today's interconnected world.
+        </p>
+      </section>
+    </section>
+    <section>
+      <h2>RSA</h2>
+      <section class="content-block">
+        <p>
+          RSA is a public-key cryptography algorithm used to secure data. Security comes ftom the difficulty of factoring very large numbers (multiplying is easy,
+          factoring back is hard). It uses key sizes of 1024bits, 2048bits, 3072bits or 4096bits(309, 617, 925, 1234 digits), while the prime numbers used are about half 
+          that size.
+        </p>
+      </section>
+      <h3>What is modulo (%)?</h3>
+      <section class="content-block">
+        <p>
+          Modulo operation is defined as the reminder of a number when divided by another number.
+          % symbol is used. E.g. 151 / 50 = 3 remainder 1 so 151 % 30 = 1. 7428 % 536 = 460.
+          For the math in the following example, <a href="https://www.wolframalpha.com/" target="_blank">Wolfram Alpha</a> can be used.
+        </p>
+      </section>
+      <h3>How it works</h3>
+      <section class="content-block">
+        <p>
+          We'll follow the classic analogy of Bob and Alice:
+        </p>
+        <ol>
+          <li><p>Bob chooses two prime numbers: <b>p = 10007</b> and <b>q = 99991</b>. He calculates <b>n = p * q = 1000609937</b></p></li>
+          <li><p>Let <b>T</b> (Totient) <b>= (p-1)(q-1) = 1000499940</b></p></li>
+          <li><p><b>e</b> is a number relatively prime to <b>T</b>, usually 65537</p></li>
+          <li><p><b>d</b> is another number, such that <b>(e * d) % T = 1</b>. In our case d = 662506613</p></li>
+          <li><p>The public key is <b>(n, e) i. e. (1000609937, 65537)</b>. The private key is <b>(n, d) = (1000609937, 662506613)</b></p></li>
+          <li><p>Let's say the value we want to encrypt is <b>x = 14082007</b>. Alice calculates and sends <b>y = x<sup>e</sup> % n</b>. She gets both <b>n</b> and 
+            <b>e</b> from the public, shared key. So <b>y = 14082007<sup>65537</sup> % 1000609937 = 306497210</b></p></li>
+          <li><p>Bob decrypts the value calculating <b>x = y<sup>d</sup> % n</b>. He gets both <b>n</b> and <b>d</b> from his private, unshared key.
+            So <b>x = 306497210<sup>662506613</sup> % 1000609937 = 14082007</b></p></li>
+        </ol>
+      </section>
+      <section class="content-block">
+        <p>
+          This way, the message was safely transmitted and is unreadable by any third party, without sending any private keys over the network.
+        </p>
+      </section>
+    </section>
+  </main>
+
+  <footer>
+    <p>2025 Sudosecurity | Tufescu Dragos</p>
+  </footer>
+</body>
+</html>
