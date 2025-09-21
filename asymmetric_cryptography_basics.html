@@ -110,10 +110,60 @@
         </p>
       </section>
     </section>
+
+    <section>
+      <h2>Diffie-Hellman Key Exchange</h2>
+      <section class="content-block">
+        <p>
+          Key exchange aims to establish a shared secret between two parties over an insecure communication channel without requiring a pre-existing shared secret 
+          and without third parties being able to obtain the message.
+        </p>
+      </section>
+      <section class="content-block">
+        <h3>How it works</h3>
+        <ol>
+<li>
+  <p>
+    Alice and Bob agree on <b>public variables</b>: a large prime number <b>p</b> and a generator <b>g</b>, 0 &lt; g &lt; p. These values are publicly disclosed over the communication channel.
+    Let's pick <b>p = 999983</b> and <b>g = 101</b>. They are way too small for any real security.
+  </p>
+</li>
+
+<li>
+  <p>
+    Each party chooses a private integer. Let's say Alice picks <b>a = 12345</b> and Bob picks <b>b = 54321</b>. These are private keys and must not be disclosed.
+  </p>
+</li>
+
+<li>
+  <p>
+    They each calculate their <b>public key</b> using their private key and public variables:  
+    Alice calculates <b>A = g<sup>a</sup> % p</b>, and Bob calculates <b>B = g<sup>b</sup> % p</b>.  
+    <i>(Actual numbers require modular exponentiation and are too large to compute manually.)</i>
+  </p>
+</li>
+
+<li>
+  <p>
+    Alice and Bob exchange the public keys. Bob receives <b>A</b> and Alice receives <b>B</b>. This step is called the <b>key exchange</b>.
+  </p>
+</li>
+
+<li>
+  <p>
+    Finally, they calculate the shared secret using the received public key and their private key:  
+    Alice calculates <b>s = B<sup>a</sup> % p</b>, and Bob calculates <b>s = A<sup>b</sup> % p</b>.  
+    Both computations produce the same shared secret.  
+    <i>(Exact values require modular exponentiation due to large exponents.)</i>
+  </p>
+</li>
+        </ol>
+      </section>
+    </section>
   </main>
 
   <footer>
-    <p>© 2025 Sudosecurity | Tufescu Dragos</p>
+    <p> 2025 sudosecurity | Tufescu Dragos</p>
   </footer>
 </body>
 </html>
